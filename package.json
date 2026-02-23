@@ -1,0 +1,17 @@
+{
+  "name": "playwright-learning",
+  "version": "1.0.0",
+  "description": "Automation upskilling with Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": ["automation", "testing", "playwright"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
