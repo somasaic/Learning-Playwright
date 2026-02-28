@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Status code is 200",
+        "actual": 200,
+        "expected": 200,
+        "type": "strictEqual"
+    },
+    {
+        "name": "Loose equality test",
+        "actual": "5",
+        "expected": 5,
+        "type": "looseEqual"
+    },
+    {
+        "name": "Less than test",
+        "actual": 3,
+        "expected": 10,
+        "type": "lessThan"
+    }
+]
