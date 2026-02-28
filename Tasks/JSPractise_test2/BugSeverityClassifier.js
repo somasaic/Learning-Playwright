@@ -20,3 +20,45 @@ Bug Title: Checkout page crashes on applying coupon Frequency: always Impact: bl
 
 
 */
+
+function classifyBug(title, frequency, impact) {
+
+    let severity = "";
+
+    if (frequency === "always") {
+        if (impact === "blocker") severity = "P0 - Critical: Stop release immediately";
+        else if (impact === "major") severity = "P1";
+        else severity = "P2";
+    }
+    else if (frequency === "often") {
+        if (impact === "blocker") severity = "P1";
+        else if (impact === "major") severity = "P2";
+        else severity = "P3";
+    }
+    else {
+        if (impact === "blocker") severity = "P2";
+        else if (impact === "major") severity = "P3";
+        else severity = "P4";
+    }
+
+    console.log(`Bug Title: ${title}`);
+    console.log(`Frequency: ${frequency}`);
+    console.log(`Impact: ${impact}`);
+    console.log(`Severity: ${severity}`);
+
+    if (severity.startsWith("P0")) process.exit(1);
+}
+
+if (require.main === module) {
+    try {
+        const args = process.argv.slice(2);
+        if (args.length < 3) throw new Error("Provide title, frequency, impact");
+
+        const [title, frequency, impact] = args;
+        classifyBug(title, frequency, impact);
+
+    } catch (err) {
+        console.error(`[ERROR] ${err.message}`);
+        process.exit(1);
+    }
+}

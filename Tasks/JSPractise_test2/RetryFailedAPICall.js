@@ -12,7 +12,34 @@ Input:
 MAX_ATTEMPTS = 5
 
 Output:
-Attempt 1: ❌ FAILED (Timeout/Error) 
-Attempt 2: ✅ SUCCESS (Response 200 OK) 
+Attempt 1: FAILED (Timeout/Error) 
+Attempt 2: SUCCESS (Response 200 OK) 
 API call PASSED after 2 attempt(s).
 */
+
+
+function retryApiCall(maxAttempts) {
+    let attempt = 0;
+    let isSuccess = false;
+
+    do {
+        attempt++;
+        const randomValue = Math.random();
+
+        if (randomValue > 0.6) {
+            isSuccess = true;
+            console.log(`Attempt ${attempt}/${maxAttempts}: SUCCESS (Response 200 OK)`);
+        } else {
+            console.log(`Attempt ${attempt}/${maxAttempts}: FAILED (Timeout/Error)`);
+        }
+
+    } while (!isSuccess && attempt < maxAttempts);
+
+    if (isSuccess) {
+        console.log(`\nAPI call PASSED after ${attempt} attempt(s).`);
+    } else {
+        console.log(`\nAPI call FAILED after ${maxAttempts} attempts.`);
+    }
+}
+
+retryApiCall(5);

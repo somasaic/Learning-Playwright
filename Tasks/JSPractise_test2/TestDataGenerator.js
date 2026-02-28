@@ -22,5 +22,32 @@ INACTIVE
 
 💡 Explanation:Each user gets a padded ID, sequential name/email, cycling role, and every 3rd user is INACTIVE for edge case testing.
 
-
 */
+
+var globalCounter = 0;
+
+function generateTestData(numUsers) {
+    const roles = ["admin", "editor", "viewer", "tester", "manager"];
+    const domain = "testingacademy.com";
+    const users = [];
+
+    for (let i = 1; i <= numUsers; i++) {
+        globalCounter++;
+
+        const user = {
+            id: "USR-" + String(globalCounter).padStart(4, "0"),
+            name: `TestUser_${i}`,
+            email: `testuser${i}@${domain}`,
+            role: roles[(i - 1) % roles.length],
+            status: (i % 3 === 0) ? "INACTIVE" : "ACTIVE"
+        };
+
+        users.push(user);
+    }
+
+    return users;
+}
+
+// Generate 8 users
+const data = generateTestData(8);
+console.table(data);
