@@ -57,8 +57,11 @@ function validateStatusCode(statusCode){
     }      
 }
 
+// CLI USAGE: node API_ResponseStatusCodeValidator.js 200
+// process.argv[2] captures the status code from terminal input
+// Allows file to work standalone OR be imported in other scripts (best for automation)
 if(require.main === module){
-    
+
     const inputStr = process.argv[2];
 
     // Step 1: Validate the STRING first
@@ -86,3 +89,5 @@ if(require.main === module){
 }
 
 module.exports = { validateStatusCode };
+
+
