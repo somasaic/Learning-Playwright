@@ -1,0 +1,165 @@
+📚 Now — Full Level 1 Foundation (Arrays from Zero)
+A. Concept Explanation
+An array is an ordered list of values stored under one variable name. 
+Think of it as a test suite — a collection of test cases you can loop through, filter, and process.
+
+Javascript:
+// Real QA arrays you'll work with daily
+const statusCodes  = [200, 201, 404, 500];
+const testNames    = ["login", "logout", "payment", "checkout"];
+const testResults  = [
+  { name: "login",   status: "pass", duration: 320 },
+  { name: "logout",  status: "fail", duration: 85  },
+  { name: "payment", status: "pass", duration: 1200}
+];
+
+
+B. Why Arrays Exist
+Without arrays, you'd write:
+
+Javascript:
+// ❌ Without arrays — unscalable
+let test1 = "login";
+let test2 = "logout";
+let test3 = "payment";
+// → 100 test cases = 100 variables 😱
+
+// ✅ With arrays — scalable
+let tests = ["login", "logout", "payment", ...]; // loop, filter, map easily
+
+C. The 6 Array Methods Every SDET Must Master
+Javascript:
+const tests = [
+  { name: "login",    status: "pass", duration: 320  },
+  { name: "search",   status: "fail", duration: 85   },
+  { name: "checkout", status: "pass", duration: 1200 },
+  { name: "payment",  status: "fail", duration: 450  },
+  { name: "logout",   status: "pass", duration: 99   }
+];
+
+// ─────────────────────────────
+// 1. filter() — "Give me only what matches"
+// ─────────────────────────────
+const failedTests = tests.filter(t => t.status === "fail");
+// → login search, payment  (array of objects)
+
+// ─────────────────────────────
+// 2. map() — "Transform each item"
+// ─────────────────────────────
+const testNames = tests.map(t => t.name);
+// → ["login", "search", "checkout", "payment", "logout"]
+
+// ─────────────────────────────
+// 3. find() — "First match only"
+// ─────────────────────────────
+const firstFail = tests.find(t => t.status === "fail");
+// → { name: "search", status: "fail", duration: 85 }
+
+// ─────────────────────────────
+// 4. every() — "Do ALL pass this rule?"
+// ─────────────────────────────
+const allPassed = tests.every(t => t.status === "pass");
+// → false
+
+// ─────────────────────────────
+// 5. some() — "Does ANY pass this rule?"
+// ─────────────────────────────
+const anyFailed = tests.some(t => t.status === "fail");
+// → true
+
+// ─────────────────────────────
+// 6. reduce() — "Collapse array into single value"
+// ─────────────────────────────
+const totalDuration = tests.reduce((sum, t) => sum + t.duration, 0);
+// → 320 + 85 + 1200 + 450 + 99 = 2154
+
+D. Chaining — The SDET Superpower
+javascript:
+// Real scenario: "Give me names of FAILED tests that took over 200ms"
+const slowFailures = tests
+  .filter(t => t.status === "fail")          // keep only fails
+  .filter(t => t.duration > 200)             // keep only slow ones
+  .map(t => `${t.name} (${t.duration}ms)`); // format for reporting
+
+console.log(slowFailures);
+// → ["payment (450ms)"]
+
+
+🎯 Your Assignment — Level 1 Practice
+Problem Statement: Build a Test Suite Analyzer
+Real Automation Scenario: After a test run in Playwright, you receive an array of test result objects. 
+Build a function that generates a full summary report.
+Input:
+const testRun = [
+  { id: "TC001", name: "Login with valid credentials",    status: "pass", duration: 320,  tag: "smoke"      },
+  { id: "TC002", name: "Login with invalid password",     status: "fail", duration: 85,   tag: "regression" },
+  { id: "TC003", name: "Add item to cart",                status: "pass", duration: 1200, tag: "smoke"      },
+  { id: "TC004", name: "Checkout with saved card",        status: "fail", duration: 450,  tag: "smoke"      },
+  { id: "TC005", name: "Apply promo code",                status: "pass", duration: 99,   tag: "regression" },
+  { id: "TC006", name: "Search product by name",          status: "pass", duration: 870,  tag: "regression" },
+  { id: "TC007", name: "Remove item from cart",           status: "fail", duration: 230,  tag: "smoke"      }
+];
+
+
+Algorithm Steps:
+1. Count total, passed, failed tests
+2. Calculate pass rate as a percentage
+3. Find all failed test names
+4. Find the slowest test (highest duration)
+5. Check if all smoke tagged tests passed
+6. Find unique failed test tags
+
+Expected Output:
+Javascript:
+{
+  total: 7,
+  passed: 4,
+  failed: 3,
+  passRate: "57.14%",
+  failedTests: ["Login with invalid password", "Checkout with saved card", "Remove item from cart"],
+  slowestTest: "Add item to cart (1200ms)",
+  allSmokePassed: false,
+  failedTags: ["regression", "smoke"]
+}
+
+```
+
+**Try this yourself first — I'll give you the full solution when you're ready!**
+
+---
+
+## 💼 Interview Thinking
+
+These are the exact questions asked in SDET interviews:
+```
+Q1: "Why does .sort() give wrong results on numbers?"
+→ Answer: Default sort converts to strings. Always pass (a,b) => a-b comparator.
+
+Q2: "What's the difference between find() and filter()?"
+→ find() = first match, returns single item (or undefined)
+→ filter() = ALL matches, always returns array
+
+Q3: "I'm copying test results before re-running — why is my baseline changing?"
+→ You're doing a shallow copy. Nested objects share references. Use structuredClone().
+
+Q4: "How would you check if an API test suite had zero failures?"
+→ results.every(r => r.status >= 200 && r.status <= 299)
+
+Q5: "How would you deduplicate error codes from 1000 API calls?"
+
+→ [...new Set(errors)] — O(n) time complexity
+```
+
+---
+
+## 🧠 Automation Mindset Questions — Always Ask These
+```
+- What test data am I processing? (objects, codes, strings?)
+- Where does it come from? (Playwright test results, API JSON, CSV file?)
+- Do I need to: filter bad results? map to a new shape? reduce to a count?
+- Am I mutating original data? (Use structuredClone for safety!)
+- Is this for a single run or will it scale to 1000+ test cases?
+
+
+
+
