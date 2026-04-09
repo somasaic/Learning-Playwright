@@ -8,10 +8,17 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
-  "keywords": ["automation", "testing", "playwright"],
+  "keywords": [
+    "automation",
+    "testing",
+    "playwright"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^29.0.0"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
   }
 }
