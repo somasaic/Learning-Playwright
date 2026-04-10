@@ -1,0 +1,20 @@
+{
+  "name": "sdet-stlc-portfolio",
+  "version": "1.0.0",
+  "description": "Playwright + TypeScript SDET learning framework — VWO login automation",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "report": "npx playwright show-report",
+    "lint": "npx tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

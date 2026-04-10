@@ -1,0 +1,2 @@
+testuser@test.com,password123, SDET
+invalid@test.com,wrongpass, QA_Automation_Engineer
