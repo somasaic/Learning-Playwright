@@ -6,6 +6,14 @@
 
 ---
 
+## 🌐 Live Demo (GitHub Pages)
+
+👉 **[Open Module Navigator](https://somasaic.github.io/Learning-Playwright/)**
+
+Interactive 9-module guide and quick links. Updated with every push to main.
+
+---
+
 ## 🎯 What This Repo Is
 
 This repository is a **structured 9-module learning system** designed to take a QA professional with basic automation exposure and build them into a **mid-level SDET** capable of:
