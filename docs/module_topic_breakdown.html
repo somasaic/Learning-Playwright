@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);color:var(--color-text-primary);padding:12px 0}
+.phase{border:0.5px solid var(--color-border-tertiary);border-radius:12px;margin-bottom:16px;overflow:hidden}
+.phase-header{padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:var(--color-background-secondary)}
+.phase-header:hover{background:var(--color-background-tertiary)}
+.phase-title{font-size:14px;font-weight:500;color:var(--color-text-primary)}
+.phase-sub{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.badge{font-size:11px;padding:3px 8px;border-radius:20px;white-space:nowrap;margin-left:8px}
+.badge-amber{background:var(--color-background-warning);color:var(--color-text-warning)}
+.badge-teal{background:var(--color-background-success);color:var(--color-text-success)}
+.badge-purple{background:var(--color-background-info);color:var(--color-text-info)}
+.phase-body{display:none;padding:14px 16px}
+.phase-body.open{display:block}
+.section{margin-bottom:14px}
+.section-label{font-size:11px;font-weight:500;letter-spacing:0.04em;color:var(--color-text-tertiary);text-transform:uppercase;margin-bottom:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;padding:3px 10px;border-radius:6px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.tag.js{background:var(--color-background-warning);color:var(--color-text-warning);border-color:transparent}
+.tag.ts{background:var(--color-background-info);color:var(--color-text-info);border-color:transparent}
+.tag.pw{background:var(--color-background-success);color:var(--color-text-success);border-color:transparent}
+.tag.interview{background:var(--color-background-danger);color:var(--color-text-danger);border-color:transparent}
+.tag.complete{background:var(--color-background-secondary);color:var(--color-text-secondary);border-color:var(--color-border-secondary)}
+.chevron{font-size:12px;color:var(--color-text-tertiary);transition:transform 0.2s}
+.chevron.open{transform:rotate(180deg)}
+.current-badge{font-size:11px;padding:2px 8px;border-radius:20px;background:var(--color-background-warning);color:var(--color-text-warning);margin-left:8px}
+</style>
+
+<div id="phases"></div>
+
+<script>
+const data = [
+  {
+    num: 1,
+    title: "Module 1 — Project setup",
+    sub: "Folder structure · Playwright install · Config file",
+    status: "complete",
+    js: ["modules (import/export)","objects and key-value pairs","JSON basics","terminal commands (cd, mkdir, ls)"],
+    ts: ["tsconfig.json purpose","strict mode on/off","what .ts vs .js means","type: any vs typed"],
+    pw: ["npm init","npm install @playwright/test","npx playwright install","playwright.config.ts skeleton","baseURL config","timeout config"],
+    complete: ["pages/ folder created","tests/ folder created","fixtures/ folder created","playwright.config.ts with baseURL: app.vwo.com","package.json scripts: test, test:headed"],
+    interview: ["What is your project folder structure?","Why do you use baseURL in config?","How do you run tests headed vs headless?"]
+  },
+  {
+    num: 2,
+    title: "Module 2 — Selectors + POM",
+    sub: "LoginPage.ts · All VWO locators defined",
+    status: "complete",
+    js: ["classes (class keyword)","constructor()","this keyword","method definition inside class"],
+    ts: ["typed class properties","private vs public","return type annotation","Page type from Playwright"],
+    pw: ["page.locator()","getByRole()","getByPlaceholder()","getByTestId()","locator chaining","why POM — reuse locators in all tests"],
+    complete: ["LoginPage.ts class created","constructor(page: Page)","emailInput locator","passwordInput locator","submitButton locator","errorMessage locator","loginUrl method"],
+    interview: ["What is POM and why do you use it?","How do you define locators in Playwright?","Difference between getByRole vs locator()?"]
+  },
+  {
+    num: 3,
+    title: "Module 3 — Test cases + assertions",
+    sub: "vwo_login.spec.ts · 6 scenarios from blank",
+    status: "complete",
+    js: ["async / await","Promises (what they are, why await replaces .then)","arrow functions","template literals","try/catch basics"],
+    ts: ["test() from @playwright/test","expect() from @playwright/test","typed test data objects","interface for credentials"],
+    pw: ["test('name', async ({page}) => {})","page.goto()","page.fill()","page.click()","expect(locator).toBeVisible()","expect(locator).toHaveText()","expect(locator).toContainText()","expect(page).toHaveURL()"],
+    complete: ["TC1: valid login — lands on dashboard","TC2: wrong password — error visible","TC3: empty email — error visible","TC4: empty password — error visible","TC5: UI check — button visible on load","TC6: redirect check — URL changes after login"],
+    interview: ["Write a Playwright test from scratch","What assertions do you use most?","How do you handle async in Playwright?"]
+  },
+  {
+    num: 4,
+    title: "Module 4 — Fixtures + test data",
+    sub: "auth.fixture.ts · testData.ts · reusable setup",
+    status: "complete",
+    js: ["object destructuring","spread operator","module exports","arrays of objects"],
+    ts: ["test.extend()","type TestFixtures = {}","typed credential arrays","export const"],
+    pw: ["test.extend({})","fixture function signature","use() callback","storageState for auth reuse","testData.ts with valid/invalid sets","beforeEach vs fixture — when to use which"],
+    complete: ["testData.ts with 3 valid + 3 invalid sets","auth.fixture.ts with logged-in state","all 6 tests updated to use fixture","no repeated login code in spec file"],
+    interview: ["How do you avoid repeating setup code?","What is a Playwright fixture?","How do you manage test data?"]
+  },
+  {
+    num: 5,
+    title: "Module 5 — API mocking",
+    sub: "route.fulfill() · intercept login API · TODAY",
+    status: "current",
+    js: ["JSON.stringify / JSON.parse","fetch concept (what a network request is)","status codes (200, 401, 403, 500)","headers object"],
+    ts: ["Route type from Playwright","typed response body","optional chaining ?.","type assertions"],
+    pw: ["page.route(url, handler)","route.fulfill({ status, body })","route.abort()","route.continue()","expect(response).toBe — API assertions","waitForResponse()","how to find the login API URL (DevTools Network tab)"],
+    complete: ["intercept POST /login → mock 401 → assert error message shows","intercept POST /login → mock 200 → assert redirect happens","test that works without internet (fully mocked)","understand route.fulfill() params by memory"],
+    interview: ["Have you done API mocking in automation?","How do you test error states without a real server?","What is route.fulfill() and when do you use it?"]
+  },
+  {
+    num: 6,
+    title: "Module 6 — Cross-browser + parallel",
+    sub: "playwright.config.ts · 5 browser matrix",
+    status: "upcoming",
+    js: ["arrays (projects array in config)","spread in config objects","environment variables (process.env)"],
+    ts: ["PlaywrightTestConfig type","defineConfig()","devices from @playwright/test","projects array type"],
+    pw: ["projects: [] in config","devices['iPhone 13']","workers: 4 for parallel","fullyParallel: true","test.describe for grouping","why tests must be independent for parallel"],
+    complete: ["config with 5 browsers defined","all 6 tests pass across all browsers","parallel run time vs serial noted","any flaky test identified and fixed"],
+    interview: ["How do you run tests across browsers?","What is fullyParallel in Playwright?","How do you handle device testing?"]
+  },
+  {
+    num: 7,
+    title: "Module 7 — Reporting + retry logic",
+    sub: "HTML report · screenshot on fail · retries",
+    status: "upcoming",
+    js: ["ternary operator","process.env.CI usage","boolean config flags"],
+    ts: ["reporter type in config","tuple types (reporter array)"],
+    pw: ["reporter: 'html'","screenshot: 'only-on-failure'","video: 'retain-on-failure'","retries: 2","trace: 'on-first-retry'","npx playwright show-report","what trace viewer shows"],
+    complete: ["HTML report generated after run","screenshot captured on TC2 (wrong password)","retries:2 confirmed working","trace file opened at least once"],
+    interview: ["How do you debug a failing test?","What does trace viewer show?","How do you set up retries in Playwright?"]
+  },
+  {
+    num: 8,
+    title: "Module 8 — GitHub Actions CI",
+    sub: ".github/workflows/playwright.yml · live badge",
+    status: "upcoming",
+    js: ["what CI/CD means conceptually","yaml basics (indent = hierarchy)","environment secrets concept"],
+    ts: ["no TS here — pure yml config"],
+    pw: ["on: push / pull_request","actions/checkout@v4","actions/setup-node@v4","npx playwright install --with-deps","npx playwright test","upload-artifact for report","CI=true behaviour"],
+    complete: [".github/workflows/playwright.yml committed","push triggers test run confirmed","green badge in README.md","artifact (report) downloadable from Actions tab"],
+    interview: ["Walk me through your CI pipeline","How do you integrate Playwright with GitHub Actions?","What happens when a test fails in CI?"]
+  },
+  {
+    num: 9,
+    title: "Module 9 — STLC docs layer",
+    sub: "Test plan · RTM · bug report · closure",
+    status: "upcoming",
+    js: ["none — this is documentation layer"],
+    ts: ["none — this is documentation layer"],
+    pw: ["none — code is already done","this module maps what you built to STLC phases","connects running tests to RTM requirements","JIRA ticket for any bug found during run"],
+    complete: ["test plan updated to reference spec file","RTM: each requirement → test case → spec line","at least 1 JIRA bug logged from actual test failure","closure report: % passed, % failed, sign-off"],
+    interview: ["How does your automation map to STLC?","How do you report test results to stakeholders?","Show me your RTM"]
+  }
+];
+
+const colors = {complete:'badge-teal', current:'badge-amber', upcoming:'badge-purple'};
+const labels = {complete:'Done', current:'Today', upcoming:'Upcoming'};
+
+function render(){
+  const container = document.getElementById('phases');
+  data.forEach((m,i) => {
+    const div = document.createElement('div');
+    div.className = 'phase';
+    const isOpen = m.status === 'current';
+    div.innerHTML = `
+      <div class="phase-header" onclick="toggle(${i})">
+        <div>
+          <div style="display:flex;align-items:center">
+            <span class="phase-title">${m.title}</span>
+            <span class="badge ${colors[m.status]}">${labels[m.status]}</span>
+          </div>
+          <div class="phase-sub">${m.sub}</div>
+        </div>
+        <span class="chevron ${isOpen?'open':''}">▼</span>
+      </div>
+      <div class="phase-body ${isOpen?'open':''}">
+        <div class="section">
+          <div class="section-label">JS concepts used here</div>
+          <div class="tags">${m.js.map(t=>`<span class="tag js">${t}</span>`).join('')}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">TypeScript concepts used here</div>
+          <div class="tags">${m.ts.map(t=>`<span class="tag ts">${t}</span>`).join('')}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">Playwright APIs + methods</div>
+          <div class="tags">${m.pw.map(t=>`<span class="tag pw">${t}</span>`).join('')}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">Module complete when you can do all of these from memory</div>
+          <div class="tags">${m.complete.map(t=>`<span class="tag complete">${t}</span>`).join('')}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">Interview questions this module answers</div>
+          <div class="tags">${m.interview.map(t=>`<span class="tag interview">${t}</span>`).join('')}</div>
+        </div>
+      </div>`;
+    container.appendChild(div);
+  });
+}
+
+function toggle(i){
+  const bodies = document.querySelectorAll('.phase-body');
+  const chevrons = document.querySelectorAll('.chevron');
+  const isOpen = bodies[i].classList.contains('open');
+  bodies[i].classList.toggle('open', !isOpen);
+  chevrons[i].classList.toggle('open', !isOpen);
+}
+
+render();
+</script>
+</body>
+</html>
