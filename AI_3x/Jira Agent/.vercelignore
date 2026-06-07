@@ -1,4 +1,6 @@
 docs/
-seed/
+Seed/
 architecture/
 *.docx
+*.md
+!README.md
