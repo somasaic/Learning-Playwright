@@ -46,7 +46,7 @@ export default function Generator({ toolType, config, title, description }) {
             />
           </div>
           <button type="submit" disabled={loading || !jiraId}>
-            {loading ? 'Generating...' : 'Generate 🚀'}
+            {loading ? <><span className="spinner" />Generating...</> : 'Generate 🚀'}
           </button>
         </form>
 

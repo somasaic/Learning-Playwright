@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Settings({ config, onSave }) {
   const [local, setLocal] = useState(config);
   const [saved, setSaved] = useState(false);
+
+  useEffect(() => { setLocal(config); }, [config]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

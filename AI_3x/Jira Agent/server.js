@@ -35,7 +35,7 @@ function mergeConfig(body = {}) {
   };
 }
 
-// GET /api/config - Returns which config fields are present
+// GET /api/config - Returns which config fields are present (never sends secrets)
 app.get('/api/config', (req, res) => {
   const e = envConfig();
   res.json({

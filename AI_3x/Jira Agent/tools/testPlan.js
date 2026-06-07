@@ -56,12 +56,14 @@ export function buildMessages(issue) {
 
 /**
  * Call GROQ to generate the test plan JSON, then parse it.
+ * Strips markdown code fences in case the model wraps output.
  */
 export async function generateTestPlan(config, issue) {
   const messages = buildMessages(issue);
   const raw = await groqChat(config, messages);
+  const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
   try {
-    return JSON.parse(raw);
+    return JSON.parse(cleaned);
   } catch {
     throw new Error('GROQ returned invalid JSON for the Test Plan. Raw output:\n' + raw.slice(0, 500));
   }
