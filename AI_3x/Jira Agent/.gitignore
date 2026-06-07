@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.tmp/
+*.log
+.DS_Store
+Test_Strategy_Template.md
+Test_Strategy_Template_utf8.md
