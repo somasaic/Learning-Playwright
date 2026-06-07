@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "JIRA Agent: multi-tool QA platform — Test Plan Generator + Test Strategy Buddy. Built with B.L.A.S.T. protocol.",
+  "engines": { "node": "20.x" },
   "scripts": {
     "dev": "concurrently -k -n SERVER,CLIENT -c blue,green \"node server.js\" \"vite\"",
     "server": "node server.js",
