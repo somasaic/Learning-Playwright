@@ -23,5 +23,5 @@
 ### Next steps
 - [ ] Add `.env` file with real credentials and run `node tools/handshake.js`
 - [ ] Run `npm run dev` and do smoke test for both tools
-- [ ] Push to GitHub: https://github.com/somasaic/JiraAgent
-- [ ] Deploy to Vercel: https://jira-agent.vercel.app
+- [x] Push to GitHub: https://github.com/somasaic/Jira-Agent
+- [x] Deploy to Vercel: https://jira-agent-asky.vercel.app

@@ -35,8 +35,8 @@ A unified AI QA platform where a user pastes a Jira ID and receives a fully-form
 - [x] Spinner loading state
 
 ### Phase 5 — Trigger (Deployment)
-- [ ] Push to GitHub: https://github.com/somasaic/JiraAgent
-- [ ] Deploy to Vercel: https://jira-agent.vercel.app
+- [x] Push to GitHub: https://github.com/somasaic/Jira-Agent
+- [x] Deploy to Vercel: https://jira-agent-asky.vercel.app
 - [ ] Set Vercel environment variables (JIRA_URL, JIRA_EMAIL, JIRA_API_TOKEN, GROQ_KEY)
 - [ ] Final smoke test on live URL
 

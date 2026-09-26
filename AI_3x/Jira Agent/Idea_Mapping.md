@@ -23,9 +23,9 @@ The Jira Agent reuses that architecture and extends it into a multi-tool platfor
 
 # New Repo - Jira Agent
 
-https://github.com/somasaic/JiraAgent
+https://github.com/somasaic/Jira-Agent
 
-Live Vercel Link - https://jira-agent.vercel.app/
+Live Vercel Link - https://jira-agent-asky.vercel.app/
 
 
 # My Insights to build Jira Agent
@@ -34,7 +34,7 @@ The core task is Test Strategy Buddy: fetch a Jira ticket and create a Test Stra
 
 I also wanted one UI that offers both Test Strategy and Test Plan Generator, because more features are likely to follow. The Jira Agent becomes a platform where each capability (Get Test Plan, Get Test Strategy, Test Case Generation, and so on) is a tool. Every tool fetches Jira data and generates a document, and each works independently based on what the user selects.
 
-So I designed a new repo (https://github.com/somasaic/JiraAgent) that follows the B.L.A.S.T. folder structure and adds the new features on top of it.
+So I designed a new repo (https://github.com/somasaic/Jira-Agent) that follows the B.L.A.S.T. folder structure and adds the new features on top of it.
 
 
 ## B.L.A.S.T. Project Structure (single tool)

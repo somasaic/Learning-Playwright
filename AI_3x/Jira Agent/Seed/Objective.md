@@ -25,8 +25,8 @@ Build a **unified platform** with multiple independent tools, each fetching a Ji
 - [x] Vercel serverless API routes (`api/`)
 - [x] Local Express proxy for development (`server.js`)
 - [x] Settings panel (credentials stored in localStorage)
-- [ ] Live at: https://jira-agent.vercel.app
-- [ ] GitHub: https://github.com/somasaic/JiraAgent
+- [x] Live at: https://jira-agent-asky.vercel.app
+- [x] GitHub: https://github.com/somasaic/Jira-Agent
 
 ## Reference
 
