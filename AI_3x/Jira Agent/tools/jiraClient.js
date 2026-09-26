@@ -1,5 +1,4 @@
 // Layer 3 Tool — Jira issue fetch + normalize. Atomic, deterministic.
-// Ported from Pramod's repo with full ADF support.
 
 /**
  * Recursively flatten Atlassian Document Format (ADF) into plain text.

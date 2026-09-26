@@ -1,54 +1,45 @@
 
-# Task - Given by Pramod
-You will basically get a Jira ID where the information about a feature will be written. - Create a dummy test feature for a login page or dashboard page. 
+# Problem Statement
 
-Fetch this Jira ID, and I'm going to give you a test strategy document. From that document, you need to create a test strategy. 
+Take a Jira ID that describes a feature (for example, a dummy login page or dashboard feature), fetch the ticket, and generate a formal Test Strategy from it using a standard test strategy template.
 
-You will fetch a Jira ID and you will create a test strategy with the format which I'm going to please create a UI for it. Make sure that the UI supports dark mode and light mode, and you need to upload this UI to Vercel also. 
+The solution needs a UI that supports dark mode and light mode, and it must be hosted on Vercel.
 
 Template - https://drive.google.com/drive/folders/11eAx342NHP1NGiqD_yQMAqfkZkbIjzNR
 
-You need to upload everything on GitHub also, plus Vercel, both of them. You have to give me the GitHub link, plus a screenshot of Vercel, as well as the link of Vercel. 
+Deliverables: source code on GitHub, a live Vercel deployment, and a screenshot of the running app.
 
 
-# Existing Repo - Test Plan Generator
+# Foundation - B.L.A.S.T. Framework
 
-https://github.com/PramodDutta/AITesterBlueprint3x/tree/main/chapter_03_BLAST_FW_JIRA_AI_AGENT
+During my AI testing training I learned the B.L.A.S.T. framework and built a Jira-driven Test Plan Generator with it. That learning is the base of this project:
 
-Live Link - https://jira-ai.vercel.app/
+- Layered architecture: `api/` → `tools/` → LLM, with a React `src/` front end
+- Atomic, deterministic tools, where the LLM produces JSON content and code renders the Markdown
+- Project memory docs (`LLM.md`, `task_plan.md`, `findings.md`, `progress.md`) and seed docs (`B.L.A.S.T.md`, `Objective.md`)
 
-
-
-## Explaination -> 
-Read and analyse thoroughly the complete folder structure, Project + task details and README.md file of this repo - https://github.com/PramodDutta/AITesterBlueprint3x/blob/main/chapter_03_BLAST_FW_JIRA_AI_AGENT/README.md to understand the project structure and tasks properly. 
-
-that helps to build new jira agent project properly with same architecture.
-
+The Jira Agent reuses that architecture and extends it into a multi-tool platform.
 
 
 # New Repo - Jira Agent
 
-https://github.com/somasaic/JiraAgent - new - need to create new repo for it
+https://github.com/somasaic/JiraAgent
 
-Live vercel Link - https://jira-agent.vercel.app/ - new link that need to host
-
-
-# My Insights to build Jira Agent 
-
-A Task (Test Strategy Buddy) - Fetch Jira and Create Test Strategy - task given by Pramod.
-
-Additionally i wanted to create a UI that inculde Test strategy options as well as Test Plan Generator options it because next their will be two more features might be come so i wanted all those in JIRA Agents as with features like Test Plan Generator, Test Strategy Buddy and etc upcoming insights that similar features like Fetch JIRA ID and Get Test Plan & Get Test Strategy or Test Case Generation etc - these are like tools. in short we have to build a platform with 3-4 tools for fetching JIRA data and generating documents based on that. Each tools works independently based on user selection
+Live Vercel Link - https://jira-agent.vercel.app/
 
 
-so -> by analysing existing test plan generator repo - pramods repo(https://github.com/PramodDutta/AITesterBlueprint3x/tree/main/chapter_03_BLAST_FW_JIRA_AI_AGENT),
+# My Insights to build Jira Agent
 
-i came up with an idea to build a new repo(https://github.com/somasaic/JiraAgent) for jira agent and use the same folder structure with adding the new features into it.
+The core task is Test Strategy Buddy: fetch a Jira ticket and create a Test Strategy.
+
+I also wanted one UI that offers both Test Strategy and Test Plan Generator, because more features are likely to follow. The Jira Agent becomes a platform where each capability (Get Test Plan, Get Test Strategy, Test Case Generation, and so on) is a tool. Every tool fetches Jira data and generates a document, and each works independently based on what the user selects.
+
+So I designed a new repo (https://github.com/somasaic/JiraAgent) that follows the B.L.A.S.T. folder structure and adds the new features on top of it.
 
 
+## B.L.A.S.T. Project Structure (single tool)
 
-## Existing Folder Structure of Pramods Repo -
-
-- chapter_03_BLAST_FW_JIRA_AI_AGENT (main)
+- project root
     -> api folder
     -> architecture folder
     -> tools folder
@@ -72,10 +63,10 @@ i came up with an idea to build a new repo(https://github.com/somasaic/JiraAgent
     -> vite.config.ts
 
 
-## New Jira Agent Repo's Estiated Folder Structure -
+## New Jira Agent Repo's Estimated Folder Structure -
 
 - JiraAgent (main)
-    - chapter_03_BLAST_FW_JIRA_AI_AGENT folder (Rename as test_plan_generator)
+    test_plan_generator Folder
         -> api folder
         -> architecture folder
         -> tools folder
@@ -88,7 +79,7 @@ i came up with an idea to build a new repo(https://github.com/somasaic/JiraAgent
         -> Seed Folder
             -> B.L.A.S.T.md
             -> Objective.md
-        -> Readme.md - pramods task insights
+        -> Readme.md - contains Test Plan Generator insights
         -> prompt.md - task based prompt
 
 
@@ -118,7 +109,3 @@ i came up with an idea to build a new repo(https://github.com/somasaic/JiraAgent
     -> vercel.json
     -> server.js
     -> vite.config.ts
-
-
-
-

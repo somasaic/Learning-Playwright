@@ -1,10 +1,10 @@
 # Objective — Jira Agent Platform
 
-## Task (Given by Pramod)
+## Problem Statement
 
 Fetch a Jira ID and generate a formal QA document (Test Plan or Test Strategy) from its contents using an LLM, with a React UI that supports dark/light mode, hosted on Vercel.
 
-## Extended Vision (Somasai)
+## Extended Vision
 
 Build a **unified platform** with multiple independent tools, each fetching a Jira ticket and producing a different QA artifact. The platform is extensible — new tools (Test Case Generator, Bug Report Analyzer, etc.) can be added as new tabs without touching the core architecture.
 
@@ -30,6 +30,5 @@ Build a **unified platform** with multiple independent tools, each fetching a Ji
 
 ## Reference
 
-- Pramod's original repo: https://github.com/PramodDutta/AITesterBlueprint3x/tree/main/chapter_03_BLAST_FW_JIRA_AI_AGENT
-- Live reference: https://jira-ai.vercel.app/
+- Architecture: B.L.A.S.T. framework (see `Seed/B.L.A.S.T.md`), learned during my AI testing training
 - Template: https://drive.google.com/drive/folders/11eAx342NHP1NGiqD_yQMAqfkZkbIjzNR

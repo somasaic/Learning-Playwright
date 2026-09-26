@@ -1,6 +1,6 @@
 // Layer 3 Tool — Test Plan: build prompt, call GROQ, render deterministic Markdown.
 // Boundary rule (BLAST): GROQ produces CONTENT (JSON); Markdown rendering is deterministic code.
-// Ported from Pramod's repo.
+
 import { groqChat } from './groqClient.js';
 
 const SCHEMA_HINT = `Return ONLY a JSON object with EXACTLY these keys:

@@ -19,4 +19,4 @@ A unified AI QA platform for generating formal Test Plans and Test Strategies fr
 - **Layer 3 (Tools):** Shared atomic capabilities (`tools/jiraClient.js`, `tools/groqClient.js`, `tools/testPlan.js`, `tools/testStrategy.js`)
 
 ## Deployment
-Hosted on Vercel at [jira-agent.vercel.app](https://jira-agent.vercel.app/).
+Hosted on Vercel at [jira-agent.vercel.app](https://jira-agent-asky.vercel.app/).

@@ -1,15 +1,13 @@
 
 
-# Task - Given by Pramod
-You will basically get a Jira ID where the information about a feature will be written. - Create a dummy test feature for a login page or dashboard page. 
+# Problem Statement
+Take a Jira ID that describes a feature (for example, a dummy login page or dashboard feature) and fetch it.
 
-Fetch this Jira ID, and I'm going to give you a test strategy document. From that document, you need to create a test strategy. 
-
-You will fetch a Jira ID and you will create a test strategy with the format which I'm going to please create a UI for it. Make sure that the UI supports dark mode and light mode, and you need to upload this UI to Vercel also. 
+Using a standard test strategy template, generate a Test Strategy from the Jira ticket. Build a UI for it that supports dark mode and light mode, and host it on Vercel.
 
 Template - https://drive.google.com/drive/folders/11eAx342NHP1NGiqD_yQMAqfkZkbIjzNR
 
-You need to upload everything on GitHub also, plus Vercel, both of them. You have to give me the GitHub link, plus a screenshot of Vercel, as well as the link of Vercel. 
+Deliverables: source code on GitHub, a live Vercel deployment, and a screenshot of the running app.
 
 
 
